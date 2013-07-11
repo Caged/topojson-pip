@@ -7,6 +7,10 @@
   "version": "0.1.0",
   "description": "Generate topojson files by determing if a points rests in a a polygons",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Caged/topojson-pip.git"
+  },
   "keywords": [
     "topojson",
     "point in polygon"
