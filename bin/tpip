@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    optimist = require('optimist'),
+    queue = require('queue-async'),
+    tpip = require('../')
+
+var argv = optimist.usage("Usage: \033[1mtpip\033[0m -pt TOPOJSON -pg TOPOJSON [options]\n\n")
+  .options('o', {
+    describe: 'output topojson file',
+    alias: 'out',
+    default: '/dev/stdout'
+  })
+  .options('pt', {
+    describe: 'input topojson point file',
+    alias: 'point-file'
+  })
+  .options('pg', {
+    describe: 'input topojson polygon file',
+    alias: 'polygon-file'
+  })
+  .options('key', {
+    describe: 'The property key used to store the point count',
+    default: 'count'
+  })
+  .options('help', {
+    describe: 'display this helpful message',
+    type: 'boolean',
+    default: false
+  }).demand(['pt', 'pg']).argv
+
+if(argv.help)
+  return optimist.showHelp()
+
+var points = JSON.parse(fs.readFileSync(argv.pt)),
+    polygons = JSON.parse(fs.readFileSync(argv.pg))
+
+console.time('Topology Polygon Iteration')
+tpip.pip(points, polygons, argv)
+console.timeEnd('Topology Polygon Iteration')

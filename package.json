@@ -1,0 +1,22 @@
+
+{
+  "name": "topojson-pip",
+  "author": "Justin Palmer",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "version": "0.1.0",
+  "description": "Generate topojson files by determing if a points rests in a a polygons",
+  "main": "index.js",
+  "keywords": [
+    "topojson",
+    "point in polygon"
+  ],
+  "dependencies": {
+    "geojson-utils": "1.0.0",
+    "optimist": "0.6.0",
+    "topojson": "1.2.2"
+  },
+  "bin": {
+    "topojson": "./bin/tpip"
+  }
+}
